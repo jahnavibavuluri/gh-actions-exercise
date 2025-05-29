@@ -6,6 +6,11 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v3 
+      - name: cache dependencies
+        uses: actions/cache@v4 
+        with:
+          path: ~/.npm # point at the files and folders that will be cached
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }} # used for retrieving cache in future, used for recreating dependencies on runner machine 
       - name: install dependencies 
         run: npm ci
       - name: lint code 
@@ -20,6 +25,11 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v3 
+      - name: cache dependencies
+        uses: actions/cache@v4 
+        with:
+          path: ~/.npm 
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: install dependencies 
         run: npm ci
       - name: build code
