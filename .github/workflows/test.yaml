@@ -23,7 +23,7 @@ jobs:
       - name: build code
         run: npm run build 
       - name: upload artifacts 
-        uses: actions/upload-artifact@v3 
+        uses: actions/upload-artifact
         with:
           name: dist-files # artifact name useful for retrieving them 
           path: | # where to find the artifacts
